@@ -7,8 +7,8 @@ import logging
 def connect_to_db():
     HOST = 'darchiviuku.cluster-ro-ct2brvwy8za8.us-east-1.rds.amazonaws.com'
     DATABASE = "datacollection"
-    USER = "root"
-    PASSWORD = 'root'
+    USER = "admin"
+    PASSWORD = 'd5Sj5U7lZqwNYsqRjhJI'
     db_connection = mysql.connect(
         host=HOST, database=DATABASE, user=USER, password=PASSWORD)
     return db_connection
