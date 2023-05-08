@@ -20,8 +20,8 @@ mysql_cursor = mysql_connection.cursor()
 logging.basicConfig(filename='website-description-logger.log', level=logging.DEBUG)
 
 
-df = pd.read_excel("Output_filtered.xlsx", engine="openpyxl")
-df2 = pd.DataFrame()
+df = pd.read_csv("Output.csv")
+# df2 = pd.DataFrame()
 
 count = 0
 for domain in df['Domain']:
