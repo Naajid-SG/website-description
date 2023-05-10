@@ -38,10 +38,10 @@ for domain in df['Domain']:
         else:
             description = None
     except Exception as e:
-        description = "MESSAGE:"+e
+        description = "MESSAGE:"+ str(e)
         status = None
-        logging.debug(f"Error {e} \n")
+        logging.debug(f"Error {str(e)} \n")
     # append the domain and description to the DataFrame
     conn.execute(
-                'insert into website_descriptions (Domain, Description, Status_Code)  values(%s,%s, %d)', (domain,description, status))
+                'insert ignore into website_descriptions (Domain, Description, Status_Code)  values(%s,%s, %s)', (domain,description, status))
     # df2 = df2.append({'domain': domain, 'description': description, 'Status Code': status}, ignore_index=True)
