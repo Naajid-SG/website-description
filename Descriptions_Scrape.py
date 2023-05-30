@@ -12,11 +12,13 @@ from sqlalchemy import create_engine
 logging.basicConfig(filename='website-description-logger.log', level=logging.DEBUG)
 
 
-df = pd.read_csv("Output.csv")
+df1 = pd.read_csv("Output.csv")
+df2 = pd.read_csv("description_domains.csv")
+df3 = df1[~df1['Domain'].isin(df2['Domain'])]
 # df2 = pd.DataFrame()
-
+del df1,df2
 count = 0
-for domain in df['Domain']:
+for domain in df3['Domain']:
     count+=1
     logging.debug(f"Counter - {count} (Running for {domain}) \n")
     try:
