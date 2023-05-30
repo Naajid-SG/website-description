@@ -5,10 +5,8 @@ import logging
 from sqlalchemy import create_engine
 
 
-engine = create_engine("mysql+pymysql://{user}:{pw}@database-1.cluster-ro-ct2brvwy8za8.us-east-1.rds.amazonaws.com/{db}"
-                        .format(user="admin",pw="d5Sj5U7lZqwNYsqRjhJI", db="datacollection"))
-conn = engine.connect()
-print("Success Connection")
+
+# print("Success Connection")
 
 # Configure the logging module
 logging.basicConfig(filename='website-description-logger.log', level=logging.DEBUG)
@@ -42,6 +40,10 @@ for domain in df['Domain']:
         status = None
         logging.debug(f"Error {str(e)} \n")
     # append the domain and description to the DataFrame
+    engine = create_engine("mysql+pymysql://{user}:{pw}@database-1.cluster-ro-ct2brvwy8za8.us-east-1.rds.amazonaws.com/{db}"
+                        .format(user="admin",pw="d5Sj5U7lZqwNYsqRjhJI", db="datacollection"))
+    conn = engine.connect()
     conn.execute(
                 'insert ignore into website_descriptions (Domain, Description, Status_Code)  values(%s,%s, %s)', (domain,description, status))
     # df2 = df2.append({'domain': domain, 'description': description, 'Status Code': status}, ignore_index=True)
+    conn.close()
