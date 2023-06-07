@@ -42,7 +42,7 @@ for domain in df3['Domain']:
         status = None
         logging.debug(f"Error {str(e)} \n")
     # append the domain and description to the DataFrame
-    engine = create_engine("mysql+pymysql://{user}:{pw}@database-1.cluster-ro-ct2brvwy8za8.us-east-1.rds.amazonaws.com/{db}"
+    engine = create_engine("mysql+pymysql://{user}:{pw}@database-1.cluster-ro-ct2brvwy8za8.us-east-1.rds.amazonaws.com/{db}?charset=utf8mb4"
                         .format(user="admin",pw="d5Sj5U7lZqwNYsqRjhJI", db="datacollection"))
     conn = engine.connect()
     conn.execute(
